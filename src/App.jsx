@@ -1,9 +1,9 @@
-import React from 'react'
+import ExpenseItem from "./components/ExpenseItem.jsx";
 
 const App = () => {
   return (
-    <div>
-      
+    <div className="App">
+      <ExpenseItem />
     </div>
   )
 }
