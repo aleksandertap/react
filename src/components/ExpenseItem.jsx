@@ -1,4 +1,4 @@
-import "./ExpensItem.css";
+import "./ExpenseItem.css";
 
 
 const ExpenseItem = () => {
@@ -7,7 +7,7 @@ const ExpenseItem = () => {
       <div>Date</div>
       <div className="expense-item__description">
         <h2>Title</h2>
-        <div className="expenseitem__price">Price</div>
+        <div className="expense-item__price">Price</div>
       </div>
     </div>
   )
