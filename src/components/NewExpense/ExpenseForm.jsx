@@ -2,40 +2,37 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
-
-  const [userInput, setUserInput] = useState({
-    enteredTitle: '',
-    enteredPrice: '',
-    enteredDate: ''
-  });
-
-  console.log(userInput)
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredPrice, setEnteredPrice] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   const titleChangeHandler = (event) => {
-    setUserInput({
-        ...userInput,
-        enteredTitle: event.target.value
-    })
+    setEnteredTitle(event.target.value);
   };
   const priceChangeHandler = (event) => {
-    setUserInput({
-        ...userInput,
-        enteredPrice: event.target.value
-    })
+    setEnteredPrice(event.target.value);
   };
   const dateChangeHandler = (event) => {
-    setUserInput({
-        ...userInput,
-        enteredDate: event.target.value
-    })
+    setEnteredDate(event.target.value);
   };
+  const submitHandler = (event) => {
+    event.preventDefault()
+    const expenseData = {
+        title: enteredTitle,
+        price: enteredPrice,
+        date: new Date(enteredDate)
+    }
+    setEnteredTitle('')
+    setEnteredPrice('')
+    setEnteredDate('')
+  }
 
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input type="text" onChange={titleChangeHandler} value={enteredTitle} />
         </div>
         <div className="new-expense__control">
           <label>Price</label>
@@ -44,6 +41,7 @@ const ExpenseForm = (props) => {
             min="0.01"
             step="0.01"
             onChange={priceChangeHandler}
+            value={enteredPrice}
           />
         </div>
         <div className="new-expense__control">
@@ -53,6 +51,7 @@ const ExpenseForm = (props) => {
             min="2024-11-12"
             max="2026-01-31"
             onChange={dateChangeHandler}
+            value={enteredDate}
           />
         </div>
       </div>
