@@ -5,7 +5,7 @@ import NewExpense from "./components/NewExpense/NewExpense.jsx";
 const DUMMY_EXPENSES = [
   { id: "id1", date: new Date(2023, 7, 19), title: "New Book", price: 30.99 },
   { id: "id2", date: new Date(2025, 2, 23), title: "New Jeans", price: 99.99 },
-  { id: "id3", date: new Date(2024, 0, 31), title: "New Bag", price: 139.99 },
+  { id: "id3", date: new Date(2025, 0, 31), title: "New Bag", price: 139.99 },
 ];
 
 const App = () => {
