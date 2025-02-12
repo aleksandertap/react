@@ -1,33 +1,61 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Expenses from "./components/Expenses/Expenses.jsx";
 import NewExpense from "./components/NewExpense/NewExpense.jsx";
-
-const DUMMY_EXPENSES = [
-  { id: "id1", date: new Date(2023, 7, 19), title: "New Book", price: 30.99 },
-  { id: "id2", date: new Date(2025, 2, 23), title: "New Jeans", price: 99.99 },
-  { id: "id3", date: new Date(2025, 0, 31), title: "New Bag", price: 139.99 },
-];
+import Error from "./components/UI/Error.jsx";
 
 const App = () => {
-  const [expenses, setExpenses] = useState(()=>{
-    const expensesFromLS = JSON.parse(localStorage.getItem('expenses'))
-    return expensesFromLS || []
-  })
+  const [isFetching, setIsFetching] = useState(false);
+  const [expenses, setExpenses] = useState([]);
+  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
 
-  useEffect(()=>{
-    localStorage.setItem('expenses', JSON.stringify(expenses))
-  }, [expenses])
+  useEffect(() => {
+    const getExpenses = async () => {
+      setIsFetching(true);
+      try {
+        const response = await fetch("http://localhost:5005/expenses");
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error("Failed fetching data");
+        }
+        setExpenses(responseData.expenses);
+      } catch (error) {
+        setError({
+          title: "An error occured!",
+          message: "Failed fetching expenses data, please try again later",
+        });
+        setShowError(true);
+      }
+
+      setIsFetching(false);
+    };
+    getExpenses();
+    console.log(expenses);
+  }, []);
+
+  console.log(error)
+  const errorHandler = () => {
+    setError(null)
+    setShowError(false)
+  }
 
   const addExpenseHandler = (expense) => {
     setExpenses((previousExpenses) => {
-      return [expense, ...previousExpenses]
-    })
+      return [expense, ...previousExpenses];
+    });
   };
 
   return (
     <div className="App">
+      {showError && (
+        <Error
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses expenses={expenses} />
+      <Expenses expenses={expenses} isLoading={isFetching} />
     </div>
   );
 };

@@ -4,7 +4,6 @@ import Error from "../UI/Error";
 
 const ExpenseForm = (props) => {
   const [error, setError] = useState(null);
-  console.log(error);
 
   const titleInputRef = useRef();
   const priceInputRef = useRef();

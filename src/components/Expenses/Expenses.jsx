@@ -21,6 +21,7 @@ const Expenses = (props) => {
       <ExpensesFilter
         selectedYear={filteredYear}
         onFilterChange={filtereYearHandler}
+        isLoading={props.isLoading}
       />
       <ExpensesList expenses={showFilteredYear} />
     </Card>
