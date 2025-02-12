@@ -5,7 +5,7 @@ import "./Error.css";
 import { createPortal } from "react-dom";
 
 const BackDrop = () => {
-  return <div className="backdrop" />;
+  return <div className="backdrop"></div>;
 };
 
 const ModalOverlay = (props) => {
@@ -18,7 +18,7 @@ const ModalOverlay = (props) => {
         <p>{props.message}</p>
       </div>
       <footer className="footer">
-        <button onClick={props.onConfirm}>OK</button>
+        <Button onClick={props.onConfirm}>OK</Button>
       </footer>
     </Card>
   );
