@@ -5,6 +5,8 @@ import cors from 'cors'
 const app = express();
 app.use(cors())
 
+app.use(express.json());
+
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET', "POST")
@@ -20,9 +22,9 @@ app.get("/expenses", async (req, res) => {
 });
 
 app.post("/add-expense", async(req,res)=>{
-  const expenseData = req.body.expenses;
+  const expenseData = req.body;
   const newExpense = {
-    ...expensesData,
+    ...expenseData,
     id: (Math.random()*1000).toString(),
   }
   const fileContent = await fs.readFile("./data/expenses.json", "utf-8");

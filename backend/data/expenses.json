@@ -1,5 +1,1 @@
-[
-  { "id": "id1", "date": "2023-07-19", "title": "New Book", "price": 30.99 },
-  { "id": "id2", "date": "2024-02-23", "title": "New Jeans", "price": 99.99 },
-  { "id": "id3", "date": "2025-03-31", "title": "New Bag", "price": 139.99 }
-]
+[{"id":"id1","date":"2023-07-19","title":"New Book","price":30.99},{"id":"id2","date":"2024-02-23","title":"New Jeans","price":99.99},{"id":"id3","date":"2025-03-31","title":"New Bag","price":139.99},{"title":"tgsd","price":"63","date":"2025-02-21T00:00:00.000Z","id":"612.2766397642263"},{"title":"the thing","price":"100.99","date":"2024-03-07T00:00:00.000Z","id":"338.21716769571555"}]

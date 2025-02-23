@@ -53,6 +53,7 @@ const App = () => {
         if(!response.ok){
           throw new Error("Failed saving data")
         }
+        setExpenses([expense, ...expenses])
       } catch (error) {
         setError({
           title: "An error occured!",
